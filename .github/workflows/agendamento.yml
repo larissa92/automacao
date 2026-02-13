@@ -4,7 +4,7 @@ on:
   schedule:
     # Exemplo: Todo dia às 12:00 (Horário de Brasília)
     # No UTC (que o GitHub usa), isso é 15:00
-    - cron: '0 15 * * *'
+    - cron: '0 18 * * *'
 
 jobs:
   publish:
