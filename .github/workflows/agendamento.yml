@@ -1,0 +1,24 @@
+name: Postagem Agendada
+
+on:
+  schedule:
+    # Exemplo: Todo dia às 12:00 (Horário de Brasília)
+    # No UTC (que o GitHub usa), isso é 15:00
+    - cron: '0 15 * * *'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Git e Publicar
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          # Comando para trazer o que está na branch de rascunho para a principal
+          git fetch origin
+          git checkout main
+          git merge origin/rascunho --allow-unrelated-histories
+          git push origin main
